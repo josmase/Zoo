@@ -87,8 +87,13 @@ namespace Zoo
             Console.WriteLine("Enter the animals as a comma separated list, or nothing for all animals: ");
             var input = Console.ReadLine();
 
-            return input != null && input != ""
-                ? input.Split(",").Select(index => typesList[int.Parse(index)]).ToList()
+            return !string.IsNullOrEmpty(input)
+                ? input.Split(",")
+                    .Select(index => index.Trim())
+                    .Where(index => int.TryParse(index, out var n))
+                    .Where(index => int.Parse(index) < typesList.Count)
+                    .Select(index => typesList[int.Parse(index)])
+                    .ToList()
                 : typesList;
         }
 
