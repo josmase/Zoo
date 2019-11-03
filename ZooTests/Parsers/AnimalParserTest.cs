@@ -30,6 +30,7 @@ namespace ZooTests.Parsers
             Assert.Single(animals);
             Assert.Equal(name, animal.Name);
             Assert.Equal(weight, animal.Weight);
+            Assert.True(animal.IsType(typeMock));
         }
     }
 }
