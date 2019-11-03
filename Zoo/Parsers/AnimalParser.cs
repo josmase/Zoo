@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -20,11 +21,10 @@ namespace Zoo.Parsers
 
             foreach (var typeNode in animalTypeNodes)
             {
-                var nodeName = typeNode.Name.LocalName;
-                var animalType = animalTypes.FirstOrDefault(x => x.Animal == nodeName.Remove(nodeName.Length - 1));
-
                 foreach (var animalNode in typeNode.Descendants())
                 {
+                    var nodeName = animalNode.Name.LocalName;
+                    var animalType = animalTypes.FirstOrDefault(x => x.Animal == nodeName);
                     var name = animalNode.Attribute("name")?.Value;
                     var weight = animalNode.Attribute("kg")?.Value;
                     if (name != null && weight != null)
