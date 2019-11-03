@@ -23,7 +23,7 @@ namespace ZooTests.Parsers
             Assert.Equal(type, lionType.Animal);
             Assert.Equal(ratio, lionType.Ratio);
             Assert.Equal(Diet.Carnivore, lionType.Diet);
-            Assert.Null(lionType.MeatPercent);
+            Assert.Equal(0, lionType.MeatPercent);
         }
 
         [Fact]

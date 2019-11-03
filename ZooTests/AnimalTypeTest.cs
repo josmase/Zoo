@@ -34,7 +34,7 @@ namespace ZooTests
             Assert.Equal(animalType, type.Animal);
             Assert.Equal(diet, type.Diet);
             Assert.Equal(ratio, type.Ratio);
-            Assert.Null(type.MeatPercent);
+            Assert.Equal(0, type.MeatPercent);
         }
     }
 }
