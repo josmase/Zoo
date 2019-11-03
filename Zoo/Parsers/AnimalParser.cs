@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -28,7 +28,7 @@ namespace Zoo.Parsers
                     var name = animalNode.Attribute("name")?.Value;
                     var weight = animalNode.Attribute("kg")?.Value;
                     if (name != null && weight != null)
-                        animals.Add(new Animal(animalType, name, Convert.ToInt32(weight)));
+                        animals.Add(new Animal(animalType, name, double.Parse(weight, CultureInfo.InvariantCulture)));
                 }
             }
 

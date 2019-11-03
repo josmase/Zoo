@@ -17,7 +17,7 @@ namespace Zoo
         public Diet Diet { get; }
         public double MeatPercent { get; }
 
-        public double CalculatePrice(int weight, Prices prices)
+        public double CalculatePrice(double weight, Prices prices)
         {
             double price = 0;
             if (Diet != Diet.Omnivore)

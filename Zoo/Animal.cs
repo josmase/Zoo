@@ -4,7 +4,7 @@
     {
         private readonly AnimalType _animalType;
 
-        public Animal(AnimalType animalType, string name, int weight)
+        public Animal(AnimalType animalType, string name, double weight)
         {
             _animalType = animalType;
             Name = name;
@@ -13,7 +13,7 @@
 
 
         public string Name { get; }
-        public int Weight { get; }
+        public double Weight { get; }
 
         public double CalculatePrice(Prices prices)
         {
