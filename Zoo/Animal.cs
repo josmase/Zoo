@@ -2,13 +2,18 @@
 {
     public class Animal
     {
-        private AnimalType AnimalType;
+        private readonly AnimalType _animalType;
 
-        public Animal(AnimalType animalType, string name,int weight)
+        public Animal(AnimalType animalType, string name, int weight)
         {
-            AnimalType = animalType;
+            _animalType = animalType;
             Name = name;
             Weight = weight;
+        }
+
+        public double CalculatePrice(Prices prices)
+        {
+            return _animalType.CalculatePrice(Weight, prices);
         }
 
 
