@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -82,7 +82,7 @@ namespace Zoo
             var counter = 0;
             foreach (var type in typesList)
             {
-                Console.WriteLine($"{counter} - {type.Animal}s");
+                Console.WriteLine($"{counter} - {type.Animal}");
                 counter++;
             }
 
