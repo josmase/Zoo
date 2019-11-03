@@ -1,4 +1,6 @@
-﻿namespace Zoo
+﻿using System;
+
+namespace Zoo
 {
     public class AnimalType
     {
@@ -17,15 +19,20 @@
 
         public double CalculatePrice(int weight, Prices prices)
         {
+            double price = 0;
             if (Diet != Diet.Omnivore)
             {
                 var foodPrice = Diet == Diet.Herbivore ? prices.Fruits : prices.Meat;
-                return foodPrice * weight * Ratio;
+                price = foodPrice * weight * Ratio;
+            }
+            else
+            {
+                var meatRatio = Ratio * MeatPercent;
+                var fruitRatio = Ratio - meatRatio;
+                price = prices.Fruits * weight * fruitRatio + prices.Meat * weight * meatRatio;
             }
 
-            var meatRatio = Ratio * MeatPercent;
-            var fruitRatio = Ratio - meatRatio;
-            return prices.Fruits * weight * fruitRatio + prices.Meat * weight * meatRatio;
+            return Math.Round(price, 3);
         }
     }
 }
