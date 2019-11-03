@@ -1,23 +1,23 @@
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Zoo.Parsers;
 
 namespace Zoo
 {
-    interface ICli
+    internal interface ICli
     {
         Task Start();
     }
 
     public class Cli : ICli
     {
-        private readonly IAnimalTypeParser _typeParser;
         private readonly IAnimalParser _animalParser;
         private readonly IPriceParser _priceParser;
+        private readonly IAnimalTypeParser _typeParser;
 
         public Cli(IAnimalTypeParser typeParser, IAnimalParser animalParser, IPriceParser priceParser)
         {
@@ -29,7 +29,7 @@ namespace Zoo
         public async Task Start()
         {
             Console.WriteLine("Welcome to our zoo!");
-            var animalTypes = await AskForAnimalTypes();
+            var animalTypes = (await AskForAnimalTypes()).ToList();
             var prices = await AskForPrices();
             var animals = AskForZoo(animalTypes);
 
@@ -125,11 +125,11 @@ namespace Zoo
             {
                 Console.WriteLine(message);
                 path = Console.ReadLine();
+                if (!Path.IsPathRooted(path)) path = Path.Combine(Directory.GetCurrentDirectory(), path);
+
                 exists = File.Exists(path);
-                if (!exists)
-                {
-                    Console.WriteLine("The file could not be found. Please try again.");
-                }
+
+                if (!exists) Console.WriteLine($"File not found: {path}");
             } while (!exists);
 
             return path;
