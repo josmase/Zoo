@@ -3,12 +3,17 @@ using System.IO;
 
 namespace Zoo.Parsers
 {
-    public class PriceParser
+    public interface IPriceParser
+    {
+        Prices ParsePrices(TextReader file);
+    }
+
+    public class PriceParser : IPriceParser
     {
         private const string MeatKey = "Meat";
         private const string FruitKey = "Fruit";
 
-        public static Prices ParsePrices(TextReader file)
+        public Prices ParsePrices(TextReader file)
         {
             string line;
             double meatPrice = 0;

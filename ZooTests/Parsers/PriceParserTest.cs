@@ -15,7 +15,8 @@ namespace ZooTests.Parsers
             var priceString = $@"Meat={meatPrice}
 Fruit={fruitPrice}";
             var reader = new StringReader(priceString);
-            var prices = PriceParser.ParsePrices(reader);
+            var parser = new PriceParser();
+            var prices = parser.ParsePrices(reader);
 
             Assert.Equal(fruitPrice, prices.Fruits);
             Assert.Equal(meatPrice, prices.Meat);
@@ -28,7 +29,7 @@ Fruit={fruitPrice}";
             var priceString = $@"{invalidKey}=123
 Fruit=123";
             var reader = new StringReader(priceString);
-            Assert.Throws<ArgumentOutOfRangeException>(() => PriceParser.ParsePrices(reader));
+            Assert.Throws<ArgumentOutOfRangeException>(() => new PriceParser().ParsePrices(reader));
         }
     }
 }
