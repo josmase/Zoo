@@ -12,7 +12,7 @@ namespace ZooTests
             const double fruitPrice = 10.2;
 
             var prices = new Prices(fruitPrice, meatPrice);
-            
+
             Assert.Equal(fruitPrice, prices.Fruits);
             Assert.Equal(meatPrice, prices.Meat);
         }

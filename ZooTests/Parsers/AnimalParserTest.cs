@@ -24,7 +24,7 @@ namespace ZooTests.Parsers
                     )));
 
             var typeMock = new AnimalType(animalTypeName, 0, Diet.Carnivore);
-            var typesMock = new List<AnimalType>() {typeMock};
+            var typesMock = new List<AnimalType> {typeMock};
             var animals = new AnimalParser().ParseAnimal(document, typesMock).ToList();
             var animal = animals[0];
             Assert.Single(animals);

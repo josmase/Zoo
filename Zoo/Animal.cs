@@ -11,13 +11,13 @@
             Weight = weight;
         }
 
+
+        public string Name { get; }
+        public int Weight { get; }
+
         public double CalculatePrice(Prices prices)
         {
             return _animalType.CalculatePrice(Weight, prices);
         }
-
-
-        public string Name { get; }
-        public int Weight { get; }
     }
 }

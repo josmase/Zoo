@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace Zoo.Parsers
@@ -25,10 +24,10 @@ namespace Zoo.Parsers
                 if (data.Length == 4 && data[3] != "")
                 {
                     var percent = data[3].Replace("%", "");
-                    meatPercent = double.Parse(percent, System.Globalization.CultureInfo.InvariantCulture) / 100;
+                    meatPercent = double.Parse(percent, CultureInfo.InvariantCulture) / 100;
                 }
 
-                var ratio = double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
+                var ratio = double.Parse(data[1], CultureInfo.InvariantCulture);
                 var dietType = GetDietType(data[2]);
                 var name = data[0];
                 var animalType = new AnimalType(name, ratio, dietType, meatPercent);

@@ -4,11 +4,11 @@ using Zoo.Parsers;
 
 namespace Zoo
 {
-    class Program
+    internal class Program
     {
         private static IServiceProvider _serviceProvider;
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             RegisterServices();
             var cli = _serviceProvider.GetService<ICli>();
@@ -28,10 +28,7 @@ namespace Zoo
 
         private static void DisposeServices()
         {
-            if (_serviceProvider is IDisposable disposable)
-            {
-                disposable.Dispose();
-            }
+            if (_serviceProvider is IDisposable disposable) disposable.Dispose();
         }
     }
 }

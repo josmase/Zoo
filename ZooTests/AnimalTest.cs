@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 using Zoo;
 
@@ -9,7 +8,7 @@ namespace ZooTests
         [Fact]
         public void ShouldCreateAnAnimalWithProperties()
         {
-            var typeStub = new AnimalType("", 0, Diet.Carnivore, 0);
+            var typeStub = new AnimalType("", 0, Diet.Carnivore);
             const string name = "Simba";
             const int weight = 0;
 
