@@ -6,14 +6,19 @@ using System.Xml.Linq;
 
 namespace Zoo.Parsers
 {
-    public class AnimalParser
+    public interface IAnimalParser
+    {
+        IEnumerable<Animal> ParseAnimal(XDocument document, IEnumerable<AnimalType> animalTypes);
+    }
+
+    public class AnimalParser : IAnimalParser
     {
         public IEnumerable<Animal> ParseAnimal(XDocument document, IEnumerable<AnimalType> animalTypes)
         {
             var animalTypeNodes = document.Descendants("Zoo").Descendants();
             var animals = new List<Animal>();
             animalTypes = animalTypes.ToList();
-            
+
             foreach (var typeNode in animalTypeNodes)
             {
                 var nodeName = typeNode.Name.LocalName;
