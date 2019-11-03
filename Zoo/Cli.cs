@@ -63,6 +63,8 @@ namespace Zoo
                 {
                     return true;
                 }
+
+                Console.WriteLine("Unknown option. Please enter Y/n");
             } while (true);
         }
 
