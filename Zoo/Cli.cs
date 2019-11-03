@@ -52,7 +52,7 @@ namespace Zoo
         {
             do
             {
-                Console.WriteLine("Do you want to calculate more prices? Y\n");
+                Console.WriteLine("Do you want to calculate more prices? Y/n");
                 var answer = Console.ReadLine();
                 if (answer == null || answer.ToLower() == "y")
                 {
