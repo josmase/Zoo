@@ -2,7 +2,7 @@
 {
     public class AnimalType
     {
-        public AnimalType(string animal, double ratio, Diet diet, double? meatPercent = null)
+        public AnimalType(string animal, double ratio, Diet diet, double meatPercent = 0)
         {
             Animal = animal;
             Ratio = ratio;
@@ -13,6 +13,6 @@
         public string Animal { get; }
         public double Ratio { get; }
         public Diet Diet { get; }
-        public double? MeatPercent { get; }
+        public double MeatPercent { get; }
     }
 }

@@ -21,7 +21,7 @@ namespace Zoo.Parsers
                 var data = line.Split(";");
 
 
-                double? meatPercent = null;
+                double meatPercent = 0;
                 if (data.Length == 4)
                 {
                     var percent = data[3].Replace("%", "");
