@@ -54,7 +54,7 @@ namespace Zoo
             {
                 Console.WriteLine("Do you want to calculate more prices? Y/n");
                 var answer = Console.ReadLine();
-                if (answer == null || answer.ToLower() == "y")
+                if (string.IsNullOrEmpty(answer) || answer.ToLower() == "y")
                 {
                     return false;
                 }
