@@ -9,19 +9,12 @@ namespace ZooTests
         [Fact]
         public void ShouldCreateAnAnimalWithProperties()
         {
-            const string animalType = "Lion";
-            const Diet diet = Diet.Carnivore;
+            var type = new AnimalType("Lion", 0.3, Diet.Carnivore, 0.3);
             const string name = "Simba";
-            const double ratio = 0.3;
-            const double meatPercent = 0.0;
             
-            var animal = new Animal(animalType, diet, name, ratio, meatPercent);
+            var animal = new Animal(type, name);
 
-            Assert.Equal(animalType, animal.AnimalType);
-            Assert.Equal(diet, animal.Diet);
             Assert.Equal(name, animal.Name);
-            Assert.Equal(ratio, animal.Ratio);
-            Assert.Equal(meatPercent, animal.MeatPercent);
         }
     }
 }
