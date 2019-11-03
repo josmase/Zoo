@@ -1,4 +1,6 @@
-﻿namespace Zoo
+﻿using System;
+
+namespace Zoo
 {
     public class Animal
     {
@@ -14,6 +16,11 @@
 
         public string Name { get; }
         public double Weight { get; }
+
+        public bool IsType(AnimalType animalType)
+        {
+            return animalType.Animal == _animalType.Animal;
+        }
 
         public double CalculatePrice(Prices prices)
         {
