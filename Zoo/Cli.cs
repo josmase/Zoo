@@ -84,7 +84,8 @@ namespace Zoo
                 counter++;
             }
 
-            Console.WriteLine("Enter the animals as a comma separated list, or nothing for all animals: ");
+            Console.WriteLine(
+                "Enter the animals as a comma separated list or nothing for all animals (Invalid input is ignored): ");
             var input = Console.ReadLine();
 
             return !string.IsNullOrEmpty(input)
