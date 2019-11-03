@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -40,11 +40,11 @@ namespace Zoo
                 foreach (var type in typesToCalculateFor)
                 {
                     var cost = CalculateCost(animals, type, prices);
-                    Console.WriteLine($"Cost for {type.Animal} is: {cost}");
+                    Console.WriteLine($"Cost for {type.Animal} is: {Math.Round(cost, 3)}");
                     totalCost += cost;
                 }
 
-                Console.WriteLine($"Total cost is: {totalCost}");
+                Console.WriteLine($"Total cost is: {Math.Round(totalCost, 3)}");
             } while (!ShouldExit());
         }
 
