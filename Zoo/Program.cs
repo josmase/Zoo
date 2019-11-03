@@ -12,7 +12,7 @@ namespace Zoo
         {
             RegisterServices();
             var cli = _serviceProvider.GetService<ICli>();
-            cli.Start();
+            cli.Start().Wait();
             DisposeServices();
         }
 
