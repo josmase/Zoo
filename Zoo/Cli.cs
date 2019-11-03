@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -32,6 +32,64 @@ namespace Zoo
             var animalTypes = await AskForAnimalTypes();
             var prices = await AskForPrices();
             var animals = AskForZoo(animalTypes);
+
+            do
+            {
+                var typesToCalculateFor = AskWhatTypesShouldBeCalculated(animalTypes);
+                var totalCost = 0.0;
+                foreach (var type in typesToCalculateFor)
+                {
+                    var cost = CalculateCost(animals, type, prices);
+                    Console.WriteLine($"Cost for {type.Animal} is: {cost}");
+                    totalCost += cost;
+                }
+
+                Console.WriteLine($"Total cost is: {totalCost}");
+            } while (!ShouldExit());
+        }
+
+        private static bool ShouldExit()
+        {
+            do
+            {
+                Console.WriteLine("Do you want to calculate more prices? Y\n");
+                var answer = Console.ReadLine();
+                if (answer == null || answer.ToLower() == "y")
+                {
+                    return false;
+                }
+
+                if (answer.ToLower() == "n")
+                {
+                    return true;
+                }
+            } while (true);
+        }
+
+        private static double CalculateCost(IEnumerable<Animal> animals, AnimalType type, Prices prices)
+        {
+            return animals.Where(animal => animal.IsType(type))
+                .Aggregate(0.0, ((cost, animal) => cost + animal.CalculatePrice(prices)));
+        }
+
+
+        private IEnumerable<AnimalType> AskWhatTypesShouldBeCalculated(IEnumerable<AnimalType> types)
+        {
+            var typesList = types.ToList();
+            Console.WriteLine("What types of animals do you want to know the cost of?");
+            var counter = 0;
+            foreach (var type in typesList)
+            {
+                Console.WriteLine($"{counter} - {type.Animal}s");
+                counter++;
+            }
+
+            Console.WriteLine("Enter the animals as a comma separated list, or nothing for all animals: ");
+            var input = Console.ReadLine();
+
+            return input != null && input != ""
+                ? input.Split(",").Select(index => typesList[int.Parse(index)]).ToList()
+                : typesList;
         }
 
         private async Task<IEnumerable<AnimalType>> AskForAnimalTypes()
