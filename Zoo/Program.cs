@@ -6,17 +6,32 @@ namespace Zoo
 {
     class Program
     {
+        private static IServiceProvider _serviceProvider;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            DiSetup();
+            RegisterServices();
+            var cli = _serviceProvider.GetService<ICli>();
+            cli.Start();
+            DisposeServices();
         }
 
-        private static void DiSetup()
+        private static void RegisterServices()
         {
-            var serviceProvider = new ServiceCollection()
+            var collection = new ServiceCollection()
+                .AddSingleton<ICli, Cli>()
                 .AddSingleton<IPriceParser, PriceParser>()
-                .AddSingleton<IAnimalTypeParser, AnimalTypeParser>();
+                .AddSingleton<IAnimalTypeParser, AnimalTypeParser>()
+                .AddSingleton<IAnimalParser, AnimalParser>();
+            _serviceProvider = collection.BuildServiceProvider();
+        }
+
+        private static void DisposeServices()
+        {
+            if (_serviceProvider is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
         }
     }
 }
