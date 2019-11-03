@@ -22,15 +22,16 @@ namespace Zoo.Parsers
 
 
                 double meatPercent = 0;
-                if (data.Length == 4)
+                if (data.Length == 4 && data[3] != "")
                 {
                     var percent = data[3].Replace("%", "");
-                    meatPercent = Convert.ToDouble(percent) / 100;
+                    meatPercent = double.Parse(percent, System.Globalization.CultureInfo.InvariantCulture) / 100;
                 }
 
-                var ratio = Convert.ToDouble(data[1]);
-
-                var animalType = new AnimalType(data[0], ratio, GetDietType(data[2]), meatPercent);
+                var ratio = double.Parse(data[1], System.Globalization.CultureInfo.InvariantCulture);
+                var dietType = GetDietType(data[2]);
+                var name = data[0];
+                var animalType = new AnimalType(name, ratio, dietType, meatPercent);
 
                 animalTypes.Add(animalType);
             }
