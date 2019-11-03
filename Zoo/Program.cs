@@ -14,7 +14,9 @@ namespace Zoo
 
         private static void DiSetup()
         {
-            var serviceProvider = new ServiceCollection().AddSingleton<IPriceParser, PriceParser>();
+            var serviceProvider = new ServiceCollection()
+                .AddSingleton<IPriceParser, PriceParser>()
+                .AddSingleton<IAnimalTypeParser, AnimalTypeParser>();
         }
     }
 }
